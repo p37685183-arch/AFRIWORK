@@ -135,10 +135,37 @@ nav a{margin:5px;font-size:13px}
 </footer>
 
 <script>
-document.getElementById("proForm").addEventListener("submit",function(e){
-e.preventDefault();
-document.getElementById("message").textContent="Formulaire rempli ! L'enregistrement en ligne sera activé prochainement.";
+document.getElementById("proForm").addEventListener("submit", async function(e) {
+  e.preventDefault();
+
+  const form = e.target;
+  const message = document.getElementById("message");
+  const donnees = Object.fromEntries(new FormData(form).entries());
+
+  message.textContent = "Enregistrement en cours...";
+
+  const { data, error } = await supabaseClient
+    .from("professionnels")
+    .insert([{
+      nom: donnees.nom,
+      telephone: donnees.telephone,
+      pays: donnees.pays,
+      ville: donnees.ville,
+      metier: donnees.metier,
+      description: donnees.description,
+      tarif: donnees.tarif ? Number(donnees.tarif) : null,
+      statut: "en_attente"
+    }]);
+
+  if (error) {
+    console.error(error);
+    message.textContent = "Erreur : " + error.message;
+  } else {
+    message.textContent = "Inscription envoyée ! En attente de validation.";
+    form.reset();
+  }
 });
+  
 </script>
 <script>
 const SUPABASE_URL = "https://zvwuryweidphrfobpvrn.supabase.co";
