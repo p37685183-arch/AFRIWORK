@@ -152,7 +152,7 @@ const supabaseClient = supabase.createClient(
   console.log("Test de la table metier...");
 
   const { data, error } = await supabaseClient
-    .from('metier')
+    .from('METIER')
     .select('*')
     .limit(1);
 
