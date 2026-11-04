@@ -147,15 +147,15 @@ document.getElementById("proForm").addEventListener("submit", async function(e) 
   const { data, error } = await supabaseClient
     .from("professionnels")
     .insert([{
-      nom: donnees.nom,
-      telephone: donnees.telephone,
-      pays: donnees.pays,
-      ville: donnees.ville,
-      metier: donnees.metier,
-      description: donnees.description,
-      tarif: donnees.tarif ? Number(donnees.tarif) : null,
-      statut: "en_attente"
-    }]);
+  NOM: donnees.nom,
+  TELEPHONE: donnees.telephone,
+  PAYS: donnees.pays,
+  VILLE: donnees.ville,
+  METIER: donnees.metier,
+  DESCRIPTION: donnees.description,
+  TARIF: donnees.tarif ? Number(donnees.tarif) : null,
+  statut: "en_attente"
+}]);
 
   if (error) {
     console.error(error);
