@@ -150,7 +150,7 @@ const supabaseClient = supabase.createClient(
 );
   async function testerSupabase() {
   const { data, error } = await supabaseClient
-    .from('metiers')
+    ..from('metier')
     .select('*')
     .limit(1);
 
