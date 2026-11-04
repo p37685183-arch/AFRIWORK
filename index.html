@@ -11,29 +11,32 @@ body{font-family:Arial,sans-serif;background:#f4f7fb;color:#172b40}
 header{background:#102b46;color:white;padding:20px 7%;display:flex;justify-content:space-between;align-items:center}
 .logo{font-size:26px;font-weight:bold;color:#35d49a}
 nav a{color:white;text-decoration:none;margin-left:18px}
-.hero{text-align:center;padding:75px 20px;background:linear-gradient(135deg,#102b46,#176b60);color:white}
-.hero h1{font-size:38px;margin-bottom:18px}
-.hero p{font-size:18px;margin-bottom:25px}
+.hero{text-align:center;padding:65px 20px;background:linear-gradient(135deg,#102b46,#176b60);color:white}
+.hero h1{font-size:35px;margin-bottom:18px}
+.hero p{margin-bottom:20px}
 .search{display:flex;max-width:600px;margin:auto;gap:8px}
-.search input{flex:1;padding:15px;border:0;border-radius:7px}
+input,select,textarea{width:100%;padding:13px;border:1px solid #d1dbe5;border-radius:7px;font-size:15px}
 button{background:#16a36a;color:white;border:0;padding:14px 22px;border-radius:7px;cursor:pointer}
 section{padding:45px 7%}
 h2{text-align:center;margin-bottom:25px}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:18px}
-.card{background:white;padding:25px;border-radius:12px;text-align:center;box-shadow:0 3px 15px #00000010}
+.card{background:white;padding:25px;border-radius:12px;text-align:center}
 .card h3{margin:12px 0}
-.card p{color:#64748b;font-size:14px}
-.cta{text-align:center;background:#e5f7ef;padding:40px 20px}
+.formbox{max-width:650px;margin:auto;background:white;padding:25px;border-radius:12px;box-shadow:0 3px 15px #00000010}
+.field{margin-bottom:16px}
+.field label{display:block;margin-bottom:7px;font-weight:bold}
+.formbox button{width:100%}
 footer{text-align:center;background:#102b46;color:white;padding:25px}
 @media(max-width:600px){
 header{flex-direction:column;gap:15px}
 nav a{margin:5px;font-size:13px}
-.hero h1{font-size:28px}
+.hero h1{font-size:27px}
 .search{flex-direction:column}
 }
 </style>
 </head>
 <body>
+
 <header>
 <div class="logo">AFRIWORK</div>
 <nav>
@@ -64,16 +67,78 @@ nav a{margin:5px;font-size:13px}
 </div>
 </section>
 
-<section class="cta" id="inscription">
-<h2>Vous êtes professionnel ?</h2>
-<p>Rejoignez AFRIWORK et faites connaître vos compétences.</p>
-<br>
-<button onclick="alert('Les inscriptions seront bientôt disponibles !')">Devenir professionnel</button>
+<section id="inscription">
+<h2>Inscription des professionnels</h2>
+<div class="formbox">
+<form id="proForm">
+<div class="field">
+<label>Nom complet</label>
+<input name="nom" type="text" required placeholder="Votre nom complet">
+</div>
+<div class="field">
+<label>Numéro WhatsApp</label>
+<input name="telephone" type="tel" required placeholder="Exemple : +226 70 00 00 00">
+</div>
+<div class="field">
+<label>Pays</label>
+<select name="pays" required>
+<option value="">Choisir un pays</option>
+<option>Burkina Faso</option>
+<option>Côte d'Ivoire</option>
+<option>Mali</option>
+<option>Niger</option>
+<option>Sénégal</option>
+<option>Bénin</option>
+<option>Togo</option>
+<option>Ghana</option>
+<option>Autre</option>
+</select>
+</div>
+<div class="field">
+<label>Ville</label>
+<input name="ville" type="text" required placeholder="Votre ville">
+</div>
+<div class="field">
+<label>Votre métier</label>
+<select name="metier" required>
+<option value="">Choisir un métier</option>
+<option>Informaticien</option>
+<option>Électricien</option>
+<option>Plombier</option>
+<option>Maçon</option>
+<option>Peintre</option>
+<option>Mécanicien</option>
+<option>Coiffeur</option>
+<option>Couturier</option>
+<option>Nettoyeur</option>
+<option>Autre</option>
+</select>
+</div>
+<div class="field">
+<label>Description de vos services</label>
+<textarea name="description" required placeholder="Présentez vos compétences"></textarea>
+</div>
+<div class="field">
+<label>Tarif indicatif en FCFA</label>
+<input name="tarif" type="number" min="0" placeholder="Exemple : 5000">
+</div>
+<button type="submit">Envoyer mon inscription</button>
+</form>
+<p id="message" style="margin-top:15px;text-align:center"></p>
+</div>
 </section>
 
 <footer>
-<p>© 2026 AFRIWORK - Connecter les compétences africaines.</p>
-<p>Première version pilote - Ouagadougou, Burkina Faso.</p>
+<p>© 2026 AFRIWORK - Les compétences africaines, à portée de main.</p>
+<p>Projet pilote : Ouagadougou, Burkina Faso.</p>
 </footer>
+
+<script>
+document.getElementById("proForm").addEventListener("submit",function(e){
+e.preventDefault();
+document.getElementById("message").textContent="Formulaire rempli ! L'enregistrement en ligne sera activé prochainement.";
+});
+</script>
+
 </body>
 </html>
