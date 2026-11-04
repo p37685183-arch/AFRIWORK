@@ -1,0 +1,79 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AFRIWORK - Services en Afrique</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,sans-serif;background:#f4f7fb;color:#172b40}
+header{background:#102b46;color:white;padding:20px 7%;display:flex;justify-content:space-between;align-items:center}
+.logo{font-size:26px;font-weight:bold;color:#35d49a}
+nav a{color:white;text-decoration:none;margin-left:18px}
+.hero{text-align:center;padding:75px 20px;background:linear-gradient(135deg,#102b46,#176b60);color:white}
+.hero h1{font-size:38px;margin-bottom:18px}
+.hero p{font-size:18px;margin-bottom:25px}
+.search{display:flex;max-width:600px;margin:auto;gap:8px}
+.search input{flex:1;padding:15px;border:0;border-radius:7px}
+button{background:#16a36a;color:white;border:0;padding:14px 22px;border-radius:7px;cursor:pointer}
+section{padding:45px 7%}
+h2{text-align:center;margin-bottom:25px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:18px}
+.card{background:white;padding:25px;border-radius:12px;text-align:center;box-shadow:0 3px 15px #00000010}
+.card h3{margin:12px 0}
+.card p{color:#64748b;font-size:14px}
+.cta{text-align:center;background:#e5f7ef;padding:40px 20px}
+footer{text-align:center;background:#102b46;color:white;padding:25px}
+@media(max-width:600px){
+header{flex-direction:column;gap:15px}
+nav a{margin:5px;font-size:13px}
+.hero h1{font-size:28px}
+.search{flex-direction:column}
+}
+</style>
+</head>
+<body>
+<header>
+<div class="logo">AFRIWORK</div>
+<nav>
+<a href="#accueil">Accueil</a>
+<a href="#services">Services</a>
+<a href="#inscription">Inscription</a>
+</nav>
+</header>
+
+<div class="hero" id="accueil">
+<h1>Trouvez le bon professionnel en Afrique</h1>
+<p>Les compétences africaines, à portée de main.</p>
+<div class="search">
+<input type="text" placeholder="Quel service recherchez-vous ?">
+<button onclick="alert('La recherche sera bientôt disponible !')">Rechercher</button>
+</div>
+</div>
+
+<section id="services">
+<h2>Nos catégories de services</h2>
+<div class="grid">
+<div class="card"><h3>💻 Informatique</h3><p>Maintenance et dépannage</p></div>
+<div class="card"><h3>⚡ Électricité</h3><p>Installation et réparation</p></div>
+<div class="card"><h3>🔧 Plomberie</h3><p>Travaux et dépannage</p></div>
+<div class="card"><h3>🏗️ Construction</h3><p>Maçonnerie et peinture</p></div>
+<div class="card"><h3>🚗 Automobile</h3><p>Mécanique et entretien</p></div>
+<div class="card"><h3>🧹 Nettoyage</h3><p>Entretien des maisons</p></div>
+</div>
+</section>
+
+<section class="cta" id="inscription">
+<h2>Vous êtes professionnel ?</h2>
+<p>Rejoignez AFRIWORK et faites connaître vos compétences.</p>
+<br>
+<button onclick="alert('Les inscriptions seront bientôt disponibles !')">Devenir professionnel</button>
+</section>
+
+<footer>
+<p>© 2026 AFRIWORK - Connecter les compétences africaines.</p>
+<p>Première version pilote - Ouagadougou, Burkina Faso.</p>
+</footer>
+</body>
+</html>
