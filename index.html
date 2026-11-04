@@ -218,5 +218,49 @@ testerSupabase();
 
   <p id="messageInscription"></p>
 </section>
+  <div id="adminLogin" style="display:none; padding:20px;">
+  <h2>Connexion administrateur AFRIWORK</h2>
+  <input id="adminEmail" type="email" placeholder="Adresse e-mail">
+  <input id="adminPassword" type="password" placeholder="Mot de passe">
+  <button onclick="connecterAdmin()">Se connecter</button>
+  <p id="adminMessage"></p>
+</div>
+  <script>
+if (window.location.hash === "#admin") {
+  document.getElementById("adminLogin").style.display = "block";
+}
+
+async function connecterAdmin() {
+  const email = document.getElementById("adminEmail").value;
+  const password = document.getElementById("adminPassword").value;
+  const message = document.getElementById("adminMessage");
+
+  message.textContent = "Connexion en cours...";
+
+  const { data, error } = await supabaseClient.auth.signInWithPassword({
+    email: email,
+    password: password
+  });
+
+  if (error) {
+    message.textContent = "Erreur : " + error.message;
+    return;
+  }
+
+  const { data: admin, error: adminError } = await supabaseClient
+    .from("admins")
+    .select("user_id")
+    .eq("user_id", data.user.id)
+    .maybeSingle();
+
+  if (adminError || !admin) {
+    await supabaseClient.auth.signOut();
+    message.textContent = "Accès administrateur refusé.";
+    return;
+  }
+
+  message.textContent = "Connexion administrateur réussie !";
+}
+</script>
 </body>
 </html>
