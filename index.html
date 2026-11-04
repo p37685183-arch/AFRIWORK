@@ -140,6 +140,14 @@ e.preventDefault();
 document.getElementById("message").textContent="Formulaire rempli ! L'enregistrement en ligne sera activé prochainement.";
 });
 </script>
+<script>
+const SUPABASE_URL = "TON_PROJECT_URL";
+const SUPABASE_KEY = "TA_PUBLISHABLE_KEY";
 
+const supabaseClient = supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+);
+</script>
 </body>
 </html>
