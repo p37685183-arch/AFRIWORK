@@ -165,23 +165,7 @@ const supabaseClient = supabase.createClient(
 }
 
 testerSupabase();
-  async function testerSupabase() {
-  console.log("Test de la table metier...");
-
-  const { data, error } = await supabaseClient
-    .from('metier')
-    .select('*')
-    .limit(1);
-
-  if (error) {
-    console.error("Erreur Supabase :", error);
-  } else {
-    console.log("AFRIWORK : base de données accessible !");
-    console.log(data);
-  }
-}
-
-testerSupabase();
+  
   console.log("AFRIWORK connecté à Supabase !");
 </script>
 </body>
