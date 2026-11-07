@@ -261,6 +261,62 @@ async function connecterAdmin() {
 
   message.textContent = "Connexion administrateur réussie !";
 }
+    async function chargerProfessionnels() {
+  const liste = document.getElementById("listeProfessionnels");
+
+  liste.textContent = "Chargement...";
+
+  const { data, error } = await supabaseClient
+    .from("professionnels")
+    .select("*")
+    .order("CREATED", { ascending: false });
+
+  if (error) {
+    liste.textContent = "Erreur : " + error.message;
+    return;
+  }
+
+  if (!data || data.length === 0) {
+    liste.textContent = "Aucun professionnel inscrit.";
+    return;
+  }
+
+  liste.replaceChildren();
+
+  data.forEach(pro => {
+    const fiche = document.createElement("div");
+    fiche.style.border = "1px solid #ccc";
+    fiche.style.padding = "12px";
+    fiche.style.margin = "10px 0";
+
+    const nom = document.createElement("h3");
+    nom.textContent = pro.NOM || "Sans nom";
+
+    const details = document.createElement("p");
+    details.textContent =
+      "Téléphone : " + (pro.TELEPHONE || "") +
+      " | Pays : " + (pro.PAYS || "") +
+      " | Ville : " + (pro.VILLE || "") +
+      " | Métier : " + (pro.METIER || "") +
+      " | Statut : " + (pro.STATUT || "");
+
+    fiche.append(nom, details);
+    liste.appendChild(fiche);
+  });
+}
 </script>
+  <div id="adminDashboard" style="display:none; padding:20px;">
+  <h2>Tableau de bord AFRIWORK</h2>
+  <h3>Professionnels inscrits</h3>
+  <button onclick="chargerProfessionnels()">
+    Actualiser la liste
+  </button>
+  <div id="listeProfessionnels">
+    Chargement des inscriptions...
+  </div>
+  <button onclick="supabaseClient.auth.signOut(); location.reload();">
+    Déconnexion
+  </button>
+</div>
 </body>
 </html>
