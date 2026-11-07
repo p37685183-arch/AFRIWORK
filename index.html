@@ -260,9 +260,6 @@ async function connecterAdmin() {
 
   message.textContent = "Connexion administrateur réussie !";
 
-document.getElementById("adminLogin").style.display = "none";
-document.getElementById("adminDashboard").style.display = "block";
-chargerProfessionnels();
 }
 }
     async function chargerProfessionnels() {
@@ -307,6 +304,41 @@ chargerProfessionnels();
     fiche.append(nom, details);
     liste.appendChild(fiche);
   });
+}
+    async function connecterAdmin() {
+  const email = document.getElementById("adminEmail").value;
+  const password = document.getElementById("adminPassword").value;
+  const message = document.getElementById("adminMessage");
+
+  message.textContent = "Connexion en cours...";
+
+  const { data, error } = await supabaseClient.auth.signInWithPassword({
+    email: email,
+    password: password
+  });
+
+  if (error) {
+    message.textContent = "Erreur : " + error.message;
+    return;
+  }
+
+  const { data: admin, error: adminError } = await supabaseClient
+    .from("admins")
+    .select("user_id")
+    .eq("user_id", data.user.id)
+    .maybeSingle();
+
+  if (adminError || !admin) {
+    await supabaseClient.auth.signOut();
+    message.textContent = "Accès administrateur refusé.";
+    return;
+  }
+
+  document.getElementById("adminLogin").style.display = "none";
+  document.getElementById("adminDashboard").style.display = "block";
+
+  message.textContent = "Connexion administrateur réussie !";
+  await chargerProfessionnels();
 }
 </script>
   <div id="adminDashboard" style="display:none; padding:20px;">
