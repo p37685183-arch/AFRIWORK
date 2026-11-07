@@ -259,6 +259,11 @@ async function connecterAdmin() {
   }
 
   message.textContent = "Connexion administrateur réussie !";
+
+document.getElementById("adminLogin").style.display = "none";
+document.getElementById("adminDashboard").style.display = "block";
+chargerProfessionnels();
+}
 }
     async function chargerProfessionnels() {
   const liste = document.getElementById("listeProfessionnels");
